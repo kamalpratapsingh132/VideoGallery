@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Video_Gallery.Areas.Admin.Models.Category>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "ShowAllCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper ">
+    <a asp-action="Create">Create</a>
+    <h1>Show all Category</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Created On</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var er in Model)
+            {
+            <tr> 
+                <td>@er.Id</td>
+                <td>@er.Name</td>
+                <td>
+                    @*<img src="../../@er.Image" height="70" width=" 70" />  </td>*@
+                                <video width="320" height="240" controls>
+                                    <source src="~/@er.Image" type="video/mp4">
+
+                                    Your browser does not support the video tag.
+                                </video>
+                            </td>
+                <td>@er.Created_On</td>
+               
+                <td>
+                    <a asp-action="Edit" asp-controller="Category" asp-route-id="@er.Id">Edit</a>
+
+
+                    <a asp-action="Delete" asp-controller="Category" asp-route-id="@er.Id">Delete </a>
+                </td>
+
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
